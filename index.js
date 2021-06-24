@@ -292,6 +292,17 @@ app.put(
   }
 );
 
+app.get('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Users.findOne({ username: req.params.username })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    })
+});
+
 //Add a movie to user's favourite list
 app.post(
   "/users/:username/favouriteMovies/:MovieID",
