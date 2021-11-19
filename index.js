@@ -303,6 +303,7 @@ app.get('/users/:username', passport.authenticate('jwt', { session: false }), (r
     })
 });
 
+
 //Add a movie to user's favourite list
 app.post(
   "/users/:username/favouriteMovies/:MovieID",
